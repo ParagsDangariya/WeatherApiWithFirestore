@@ -8,6 +8,6 @@ import retrofit2.http.GET;
 public interface Getdataservice {
 
     @GET("3534")
-    Call<List<Weather>> getPokemons();
+    Call<Weather> getWeather();
 
 }

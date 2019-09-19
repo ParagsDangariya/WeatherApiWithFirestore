@@ -23,6 +23,13 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class dashboardFragment extends Fragment {
 
@@ -46,6 +53,31 @@ public class dashboardFragment extends Fragment {
                 con.navigatetofragment(R.id.loginFragment,getActivity(),null);
             }
         });
+
+        Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+
+
+        Call<Weather> call = service.getWeather();
+        System.out.println("Call : " + call);
+        call.enqueue(new Callback<Weather>() {
+            @Override
+            public void onResponse(Call<Weather> call, Response<Weather> response) {
+
+                Weather real = response.body();
+                ArrayList<ConsolidatedWeather> conArray = new ArrayList<>(real.getConsolidatedWeather());
+
+
+
+                System.out.println("Response: " + conArray.get(0).getWeatherStateName());
+
+            }
+
+            @Override
+            public void onFailure(Call<Weather> call, Throwable t) {
+                System.out.println("Error : "+t.getMessage());
+            }
+        });
+
     }
 
     public  void readFirestore(){
