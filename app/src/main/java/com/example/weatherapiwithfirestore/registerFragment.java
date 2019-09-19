@@ -113,7 +113,7 @@ public class registerFragment extends Fragment {
 
                 }else {
                     Log.d("from Register",task.getException().getMessage());
-                    Toast.makeText(getActivity().getApplicationContext(),"Registration failed!!!" + task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(),"Registration failed!!!",Toast.LENGTH_LONG).show();
                 }
             }
         });
