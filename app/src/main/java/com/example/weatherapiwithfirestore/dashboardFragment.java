@@ -37,15 +37,15 @@ public class dashboardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         readFirestore();
         txt_name= view.findViewById(R.id.txt_dashname);
-        btn_logout = view.findViewById(R.id.btn_logout);
-        btn_logout.setOnClickListener(new View.OnClickListener() {
+     //   btn_logout = view.findViewById(R.id.btn_logout);
+       /* btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
                 con = new Controller();
                 con.navigatetofragment(R.id.loginFragment,getActivity(),null);
             }
-        });
+        });*/
     }
 
     public  void readFirestore(){

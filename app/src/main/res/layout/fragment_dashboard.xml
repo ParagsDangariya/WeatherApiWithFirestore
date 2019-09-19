@@ -7,39 +7,133 @@
     tools:context=".dashboardFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/txt_dashname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="44dp"
         android:text="@string/hello_blank_fragment"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:text="Logout"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+    <ImageView
+        android:id="@+id/img_weather"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="168dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_dashname" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="93dp"/>
 
-    <Button
-        android:id="@+id/btn_del"
+    <TextView
+        android:id="@+id/wether_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Delete"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        android:layout_marginTop="56dp"
+        android:text="wether"
+        android:textSize="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/img_weather"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="191dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="52dp"
+        android:text="min_temp"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_logout" />
+        app:layout_constraintTop_toBottomOf="@+id/wether_name"/>
+
+    <TextView
+        android:id="@+id/temp_min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
+        android:text="min_value"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/temp_the"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="52dp"
+        android:text="Temp_the"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/wether_name" />
+
+    <TextView
+        android:id="@+id/temp_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="20dp"
+        android:text="the_value"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/temp_min"
+        app:layout_constraintTop_toBottomOf="@+id/temp_the" />
+
+    <TextView
+        android:id="@+id/temp_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="52dp"
+        android:text="Temp_the"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/temp_the"
+        app:layout_constraintTop_toBottomOf="@+id/wether_name" />
+
+    <TextView
+        android:id="@+id/max_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:text="the_value"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/temp_value"
+        app:layout_constraintTop_toBottomOf="@+id/temp_max" />
+
+    <TextView
+        android:id="@+id/Humanity_wether"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="48dp"
+        android:text="Humanity :"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temp_min" />
+
+    <TextView
+        android:id="@+id/Actual_wether"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="120dp"
+        android:text="Actual :"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temp_min" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="278dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="48dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Actual_wether" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
