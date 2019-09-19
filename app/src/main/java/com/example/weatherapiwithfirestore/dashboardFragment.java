@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +32,7 @@ public class dashboardFragment extends Fragment {
     FirebaseFirestore db;
     FirebaseUser user;
     Controller con;
+    ImageView imageView;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class dashboardFragment extends Fragment {
         readFirestore();
         txt_name= view.findViewById(R.id.txt_dashname);
         btn_logout = view.findViewById(R.id.btn_logout);
+        imageView = view.findViewById(R.id.iv);
+
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class loginFragment extends Fragment implements View.OnClickListener{
     private FirebaseAuth auth;
     FirebaseUser user;
     Controller navcontrol;
+    ImageView imageView;
 
     public loginFragment() {
     }
@@ -46,6 +48,7 @@ public class loginFragment extends Fragment implements View.OnClickListener{
         edt_pad = view.findViewById(R.id.edt_pass);
         btn_log = view.findViewById(R.id.btn_log);
         txt_reg = view.findViewById(R.id.txt_lrge);
+        imageView = view.findViewById(R.id.iv);
 
 
         btn_log.setOnClickListener(this);
