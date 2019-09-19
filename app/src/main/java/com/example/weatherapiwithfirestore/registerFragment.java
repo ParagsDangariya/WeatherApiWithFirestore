@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,6 +38,7 @@ public class registerFragment extends Fragment {
     EditText edt_rname,edt_remail,edt_rpass,edt_rcpass;
     Button btn_reg;
     private FirebaseAuth auth;
+    ImageView imageView;
 
 
     public registerFragment() {
@@ -51,6 +53,7 @@ public class registerFragment extends Fragment {
         edt_rpass = view.findViewById(R.id.edt_rpass);
         edt_rname = view.findViewById(R.id.edt_rname);
         edt_rcpass = view.findViewById(R.id.edt_rcpass);
+        imageView = view.findViewById(R.id.iv);
 
         btn_reg = view.findViewById(R.id.btn_reg);
         btn_reg.setOnClickListener(new View.OnClickListener() {
