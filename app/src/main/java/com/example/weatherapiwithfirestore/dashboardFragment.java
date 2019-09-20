@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,29 +37,37 @@ import retrofit2.Response;
 
 public class dashboardFragment extends Fragment {
 
-    TextView txt_name;
-    Button btn_logout;
+    TextView txt_name,weather_name,temp_min,the_temp,temp_max,humidity,predictability;
+    ImageView weather_img;
     FirebaseFirestore db;
     FirebaseUser user;
     Controller con;
-    ImageView imageView;
+    RecyclerView recyclerView ;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         readFirestore();
         txt_name= view.findViewById(R.id.txt_dashname);
-        btn_logout = view.findViewById(R.id.btn_logout);
-        imageView = view.findViewById(R.id.iv);
+        weather_img = view.findViewById(R.id.img_weather);
+        weather_name = view.findViewById(R.id.weather_name);
+        temp_min = view.findViewById(R.id.temp_min);
+        the_temp = view.findViewById(R.id.the_temp);
+        temp_max = view.findViewById(R.id.temp_max);
+        humidity = view.findViewById(R.id.humidity);
+        predictability = view.findViewById(R.id.predictability);
+        recyclerView = view.findViewById(R.id.recyclerview);
 
-        btn_logout.setOnClickListener(new View.OnClickListener() {
+        //btn_logout = view.findViewById(R.id.btn_logout);
+
+        /*btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
                 con = new Controller();
                 con.navigatetofragment(R.id.loginFragment,getActivity(),null);
             }
-        });
+        });*/
 
         Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
@@ -70,7 +81,7 @@ public class dashboardFragment extends Fragment {
                 Weather real = response.body();
                 ArrayList<ConsolidatedWeather> conArray = new ArrayList<>(real.getConsolidatedWeather());
 
-
+                setupData(conArray);
 
                 System.out.println("Response: " + conArray.get(0).getWeatherStateName());
 
@@ -101,6 +112,42 @@ public class dashboardFragment extends Fragment {
 
     }
 
+    public void setupData(ArrayList<ConsolidatedWeather> arrWeather){
+
+        setupImage(imageString(arrWeather.get(0).getWeatherStateAbbr()),weather_img);
+        weather_name.setText(arrWeather.get(0).getWeatherStateName().toString());
+        temp_min.setText(arrWeather.get(0).getMinTemp().toString());
+        the_temp.setText(arrWeather.get(0).getTheTemp().toString());
+        temp_max.setText(arrWeather.get(0).getMaxTemp().toString());
+        humidity.setText("Humidity: " + arrWeather.get(0).getHumidity().toString() + "%");
+        predictability.setText("Predictability: " + arrWeather.get(0).getPredictability().toString() + "%");
+
+        initView(arrWeather);
+
+    }
+
+    public String imageString(String abbr){
+
+        return "https://www.metaweather.com/static/img/weather/png/" + abbr + ".png";
+
+    }
+
+    public void setupImage(String url, ImageView imgV){
+
+        Glide.with(getActivity().getApplicationContext()).asBitmap().load(url).into(imgV);
+
+    }
+
+
+    public void initView(ArrayList<ConsolidatedWeather> wearray)
+    {
+        wearray.remove(0);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(),LinearLayoutManager.HORIZONTAL,false);
+
+        recyclerView.setLayoutManager(layoutManager);
+        Recyadapter adapter = new Recyadapter(wearray,getActivity().getApplicationContext());
+        recyclerView.setAdapter(adapter);
+    }
     public dashboardFragment() {
         // Required empty public constructor
     }

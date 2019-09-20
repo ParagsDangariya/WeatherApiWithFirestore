@@ -5,9 +5,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primarySkyColor"
-
-
-
     tools:context=".loginFragment">
 
     <!-- TODO: Update blank fragment layout -->
